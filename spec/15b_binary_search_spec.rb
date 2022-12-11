@@ -106,7 +106,9 @@ describe BinarySearch do
   end
 
   describe '#update_range' do
-    let(:range_number) { double('random_number', value: 8) }
+    let(:range_number) { instance_double(RandomNumber) }
+
+    before { allow(range_number).to receive(:value).and_return(8) }
 
     context 'when the guess is less than the answer' do
       subject(:low_guess_game) { described_class.new(0, 9, range_number, 4) }
